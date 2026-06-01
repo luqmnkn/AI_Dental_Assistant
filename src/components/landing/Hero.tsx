@@ -4,6 +4,7 @@ import { CalendarIcon, MicIcon, StarIcon } from "lucide-react";
 import Image from "next/image";
 
 function Hero() {
+  // hcje3cjecec
   return (
     <section className=" relative h-screen flex items-center overflow-hidden pt-20">
       {/* GRID BG  */}

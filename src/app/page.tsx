@@ -1,7 +1,25 @@
+import CTA from "@/components/landing/CTA";
+import Footer from "@/components/landing/Footer";
+import Header from "@/components/landing/Header";
+import Hero from "@/components/landing/Hero";
+import HowItWorks from "@/components/landing/HowItWorks";
+import PricingSection from "@/components/landing/PricingSection";
+import WhatToAsk from "@/components/landing/WhatToAsk";
 import { Button } from "@/components/ui/button";
 import { SignUpButton } from "@clerk/nextjs";
 import Image from "next/image";
 
 export default function Home() {
-  return <SignUpButton mode="modal">SignUp</SignUpButton>
+  return (
+    <div className="min-h-screen bg-background">
+
+      <Header/>
+      <Hero/>
+      <HowItWorks/>
+      <WhatToAsk/>
+      <PricingSection/>
+      <CTA/>
+      <Footer/>
+    </div>
+  )
 }

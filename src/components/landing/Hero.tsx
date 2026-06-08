@@ -1,4 +1,5 @@
-import { SignUpButton } from "@clerk/nextjs";
+"use client"
+import SignUpModal from "@/components/auth/SignUpModal";
 import { Button } from "../ui/button";
 import { CalendarIcon, MicIcon, StarIcon } from "lucide-react";
 import Image from "next/image";
@@ -6,7 +7,7 @@ import Image from "next/image";
 function Hero() {
   // hcje3cjecec
   return (
-    <section className=" relative h-screen flex items-center overflow-hidden pt-20">
+    <section className="relative h-screen flex items-center overflow-hidden pt-20">
       {/* GRID BG  */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/5 to-primary/5">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)] opacity-20"></div>
@@ -54,19 +55,7 @@ function Hero() {
 
               {/* CTA BUTTONS */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <SignUpButton mode="modal">
-                  <Button size={"lg"}>
-                    <MicIcon className="mr-2 size-5" />
-                    Try voice agent
-                  </Button>
-                </SignUpButton>
-
-                <SignUpButton mode="modal">
-                  <Button size={"lg"} variant={"outline"}>
-                    <CalendarIcon className="mr-2 size-5" />
-                    Book appointment
-                  </Button>
-                </SignUpButton>
+                <SignUpModal />
               </div>
 
               {/* USER TESTIMONIALS */}
@@ -142,7 +131,7 @@ function Hero() {
                 alt="DentWise AI"
                 width={600}
                 height={600}
-                className="w-full h-auto object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500 "
+                className="w-full h-auto"
               />
             </div>
           </div>

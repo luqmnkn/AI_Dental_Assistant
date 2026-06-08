@@ -1,5 +1,6 @@
+"use client"
 import { Button } from "@/components/ui/button";
-import { SignUpButton } from "@clerk/nextjs";
+import SignUpModal from "@/components/auth/SignUpModal";
 import { CheckCircleIcon } from "lucide-react";
 
 function PricingSection() {
@@ -49,11 +50,7 @@ function PricingSection() {
                   </div>
                   <p className="text-muted-foreground">Essential dental appointment booking</p>
                 </div>
-                <SignUpButton mode="modal">
-                  <Button className="w-full py-3 bg-gradient-to-r from-muted to-muted/80 text-foreground rounded-xl font-semibold">
-                    Get Started Free
-                  </Button>
-                </SignUpButton>
+                <SignUpModal />
 
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">

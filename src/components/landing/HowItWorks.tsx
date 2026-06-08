@@ -1,4 +1,5 @@
-import { SignUpButton } from "@clerk/nextjs";
+"use client"
+import SignUpModal from "@/components/auth/SignUpModal";
 import { ArrowRightIcon, ZapIcon } from "lucide-react";
 import Image from "next/image";
 import { Button } from "../ui/button";
@@ -132,12 +133,7 @@ function HowItWorks() {
 
       {/* BOTTOM CTA */}
       <div className="text-center mt-16">
-        <SignUpButton mode="modal">
-          <Button size="lg">
-            <ArrowRightIcon className="mr-2 size-5" />
-            Get started now
-          </Button>
-        </SignUpButton>
+        <SignUpModal />
       </div>
     </section>
   );

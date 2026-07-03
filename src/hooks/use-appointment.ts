@@ -3,6 +3,20 @@
 import { getAppointments, getBookedTimeSlots, updateAppointmentStatus } from "@/lib/actions/appointments";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
+export interface UserAppointment {
+  id: string;
+  date: string;
+  time: string;
+  duration: number;
+  status: string;
+  reason?: string | null;
+  notes?: string | null;
+  patientName: string;
+  patientEmail: string;
+  doctorName: string;
+  doctorImageUrl: string;
+}
+
 export function useGetAppointments() {
   const result = useQuery({
     queryKey: ["getAppointments"],

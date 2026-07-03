@@ -1,9 +1,9 @@
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+import jwt, { SignOptions } from "jsonwebtoken";
 import { prisma } from "@/lib/prisma";
 import { cookies } from "next/headers";
 
-const JWT_SECRET = process.env.JWT_SECRET || "change-me-in-env";
+const JWT_SECRET = (process.env.JWT_SECRET || "change-me-in-env") as string;
 const COOKIE_NAME = process.env.AUTH_COOKIE_NAME || "token";
 
 export async function hashPassword(password: string) {
@@ -15,7 +15,7 @@ export async function verifyPassword(password: string, hash: string) {
 }
 
 export function signToken(payload: object, expiresIn = "7d") {
-  return jwt.sign(payload, JWT_SECRET, { expiresIn });
+  return jwt.sign(payload, JWT_SECRET, { expiresIn } as any);
 }
 
 export function verifyToken(token: string) {
@@ -43,7 +43,7 @@ export async function getUserFromRequest(req: Request) {
 }
 
 export async function getUserFromServer() {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const token = cookieStore.get(COOKIE_NAME)?.value;
   if (!token) return null;
   const payload = verifyToken(token);

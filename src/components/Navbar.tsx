@@ -1,25 +1,17 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import SignInModal from "@/components/auth/SignInModal";
-import SignUpModal from "@/components/auth/SignUpModal";
+import { UserButton, useUser } from "@clerk/nextjs";
 import { CalendarIcon, CrownIcon, HomeIcon, MicIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 function Navbar() {
-
-  const [user, setUser] = useState<any>(null);
-  useEffect(() => {
-    let mounted = true;
-    fetch('/api/auth/me').then((r) => r.json()).then((d) => { if (mounted) setUser(d.user); }).catch(()=>{});
-    return () => { mounted = false };
-  }, []);
+  const { user } = useUser();
   const pathname = usePathname();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-2 border-b border-border/50 bg-background/80 backdrop-blur-md h-16">
+    <nav className="fixed top-0 left-0 right-0 z-50 px-4 py-2 border-b border-border/50 bg-background/80 backdrop-blur-md h-16">
       <div className="max-w-7xl mx-auto flex justify-between items-center h-full">
         {/* LOGO */}
         <div className="flex items-center gap-8">
@@ -74,25 +66,16 @@ function Navbar() {
         {/* RIGHT SECTION */}
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-3">
-            {user ? (
-              <>
-                <div className="hidden lg:flex flex-col items-end">
-                  <span className="text-sm font-medium text-foreground">{user.name}</span>
-                  <span className="text-xs text-muted-foreground">{user.email}</span>
-                </div>
-                <button
-                  className="text-sm text-muted-foreground hover:text-foreground"
-                  onClick={async () => { await fetch('/api/auth/signout', { method: 'POST' }); window.location.reload(); }}
-                >
-                  Sign out
-                </button>
-              </>
-            ) : (
-              <>
-                <SignInModal />
-                <SignUpModal />
-              </>
-            )}
+            <div className="hidden lg:flex flex-col items-end">
+              <span className="text-sm font-medium text-foreground">
+                {user?.firstName} {user?.lastName}
+              </span>
+              <span className="text-xs text-muted-foreground">
+                {user?.emailAddresses?.[0]?.emailAddress}
+              </span>
+            </div>
+
+            <UserButton />
           </div>
         </div>
       </div>

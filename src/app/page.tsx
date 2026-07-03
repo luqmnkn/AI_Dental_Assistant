@@ -5,19 +5,21 @@ import Hero from "@/components/landing/Hero";
 import HowItWorks from "@/components/landing/HowItWorks";
 import PricingSection from "@/components/landing/PricingSection";
 import WhatToAsk from "@/components/landing/WhatToAsk";
-import AuthRedirectClient from "@/components/AuthRedirectClient";
+import { Button } from "@/components/ui/button";
+import { SignUpButton } from "@clerk/nextjs";
+import Image from "next/image";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
-      <AuthRedirectClient />
-      <Header />
-      <Hero />
-      <HowItWorks />
-      <WhatToAsk />
-      <PricingSection />
-      <CTA />
-      <Footer />
+
+      <Header/>
+      <Hero/>
+      <HowItWorks/>
+      <WhatToAsk/>
+      <PricingSection/>
+      <CTA/>
+      <Footer/>
     </div>
-  );
+  )
 }

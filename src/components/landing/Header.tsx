@@ -1,6 +1,4 @@
-"use client"
-import SignInModal from "@/components/auth/SignInModal";
-import SignUpModal from "@/components/auth/SignUpModal";
+import { SignInButton, SignUpButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
@@ -27,8 +25,14 @@ function Header() {
         </div>
 
         <div className="flex items-center gap-3">
-          <SignInModal />
-          <SignUpModal />
+          <SignInButton mode="modal">
+            <Button variant={"ghost"} size={"sm"}>
+              Login
+            </Button>
+          </SignInButton>
+          <SignUpButton mode="modal">
+            <Button size={"sm"}>Sign Up</Button>
+          </SignUpButton>
         </div>
       </div>
     </nav>

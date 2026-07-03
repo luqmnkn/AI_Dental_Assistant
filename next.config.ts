@@ -1,11 +1,7 @@
 import type { NextConfig } from "next";
-import path from "path";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  turbopack: {
-    root: __dirname,
-  },
   images: {
     remotePatterns: [
       {
@@ -15,6 +11,10 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "avatar.iran.liara.run",
+      },
+      {
+        protocol: "https",
+        hostname: "img.clerk.com",
       },
     ],
     unoptimized: true,

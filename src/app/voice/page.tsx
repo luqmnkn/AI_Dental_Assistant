@@ -8,9 +8,9 @@ import { getUserFromServer } from "@/lib/auth";
 async function VoicePage() {
   const user = await getUserFromServer();
 
-  const hasProPlan = !!user && (user.plan === "ai_basic" || user.plan === "ai_pro");
+  // const hasProPlan = !!user && (user.plan === "ai_basic" || user.plan === "ai_pro");
 
-  if (!hasProPlan) return <ProPlanRequired />;
+  // if (!hasProPlan) return <ProPlanRequired />;
 
   return (
     <div className="min-h-screen bg-background">

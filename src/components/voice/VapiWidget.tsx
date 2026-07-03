@@ -101,21 +101,24 @@ function VapiWidget() {
     };
   }, []);
 
-  const toggleCall = async () => {
-    if (callActive) vapi.stop();
-    else {
-      try {
-        setConnecting(true);
-        setMessages([]);
-        setCallEnded(false);
+const toggleCall = async () => {
+  if (callActive) {
+    vapi.stop();
+    return;
+  }
 
-        await vapi.start(process.env.NEXT_PUBLIC_VAPI_ASSISTANT_ID);
-      } catch (error) {
-        console.log("Failed to start call", error);
-        setConnecting(false);
-      }
-    }
-  };
+  try {
+    setConnecting(true);
+    setMessages([]);
+
+    await vapi.start(
+      process.env.NEXT_PUBLIC_VAPI_ASSISTANT_ID!
+    );
+  } catch (err) {
+    console.error(err);
+    setConnecting(false);
+  }
+};
 
   if (!isLoadedUser) return null;
 

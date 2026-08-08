@@ -29,7 +29,9 @@ model User {
   updatedAt    DateTime @updatedAt
 
   // relationships
-  appointments Appointment[]
+  appointments   Appointment[]
+  medicalRecords MedicalRecord[]
+  habitLogs      HabitLog[]
 
   @@map("users")
 }
@@ -48,7 +50,8 @@ model Doctor {
   updatedAt   DateTime @updatedAt
 
   // relationships
-  appointments Appointment[]
+  appointments   Appointment[]
+  medicalRecords MedicalRecord[]
 
   @@map("doctors")
 
@@ -76,6 +79,47 @@ model Appointment {
   @@map("appointments")
 }
 
+model MedicalRecord {
+  id           String   @id @default(cuid())
+  diagnosis    String
+  treatment    String
+  prescription String?
+  notes        String?
+  visitDate    DateTime @default(now())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // foreign keys
+  userId   String
+  doctorId String
+
+  // relationships
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  doctor Doctor @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+
+  @@map("medical_records")
+}
+
+model HabitLog {
+  id          String   @id @default(cuid())
+  date        DateTime // Store the date (normalized to midnight)
+  brushMorning Boolean @default(false)
+  brushNight   Boolean @default(false)
+  floss       Boolean @default(false)
+  mouthwash   Boolean @default(false)
+  streakCount Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // foreign keys
+  userId      String
+
+  // relationships
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, date])
+  @@map("habit_logs")
+}
 
 enum Gender {
   MALE
